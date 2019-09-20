@@ -12,9 +12,9 @@
 
             var customerViewModel = function() {
             var self = this;
-            self.firstName = ko.observable("");
-            self.lastName = ko.observable("");
-            self.emailId = ko.observable("");
+            self.Volume = ko.observable("");
+            self.Rate = ko.observable("");
+            self.TradeID = ko.observable("");
             self.searchKey = ko.observable("");
 
             self.getCustomerDetails = function () {              
@@ -22,11 +22,11 @@
                     url: 'YOUR GET API URL HERE',
                     cache: false,
                     type: 'GET',                   
-                    data: { "EmailID": self.searchKey() },
+                    data: { "TradeID": self.searchKey() },
                     success: function (data) {              
-                        self.firstName(data.Item.FirstName)
-                        self.lastName(data.Item.LastName),
-                        self.emailId(data.Item.EmailID)
+                        self.Volume(data.Item.Volume)
+                        self.Rate(data.Item.Rate),
+                        self.TradeID(data.Item.TradeID)
                     }
                 });
             }
@@ -42,7 +42,7 @@
 <body>
     <table>
         <tr>
-            <td>Search Key(EmailID):</td>
+            <td>Search Key(TradeID):</td>
             <td><input type="text" id="txtSearchKey" data-bind="value : searchKey"/></td>
         </tr>
     </table>
@@ -53,16 +53,16 @@
         <thead>
             <tr>
                 <td>First Name:</td>
-                <td><label id="firstName" data-bind="text: firstName"/></td>
+                <td><label id="Volume" data-bind="text: Volume"/></td>
             </tr>
 
             <tr>
                 <td>Last Name:</td>
-                <td><label id="lastName" data-bind="text: lastName"/></td>
+                <td><label id="Rate" data-bind="text: Rate"/></td>
             </tr>
             <tr>
                 <td>Email:</td>
-                <td><label id="emailId" data-bind="text: emailId"/></td>
+                <td><label id="TradeID" data-bind="text: TradeID"/></td>
             </tr>
           
         </thead>
